@@ -3,12 +3,11 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: charrtoo/lvl_docker:v2
+      - image: charrtoo/lvl_docker:v1
         auth:
           username: charrtoo
           password: devDocker@AKH123  # context / project UI env-var reference
     steps:
-      - checkout
       - run: echo "this is the build job"
 # Orchestrate our job run sequence
 workflows:
