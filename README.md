@@ -28,5 +28,3 @@ Do step by step.
 - - ;curl.cainfo
 - - Change it to:
 - - curl.cainfo = "your running php path\cacert.pem"
-
-### Start learnig CI/CD using CircleCi
