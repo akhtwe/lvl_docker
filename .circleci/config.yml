@@ -1,9 +1,17 @@
-image: charrtoo/lvl_docker:v1
-stages:
-  - test
-test_basic:
-  stage: test
-  script:
-    - cp .env.example .env
-    - composer install
-    - php artisan key:generate
+version: 2.1
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: charrtoo/lvl_docker:v2
+        auth:
+          username: charrtoo
+          password: devDocker@AKH123  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: echo "this is the build job"
+# Orchestrate our job run sequence
+workflows:
+  build_:
+    jobs:
+      - build
