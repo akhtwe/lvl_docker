@@ -1,16 +1,44 @@
 version: 2.1
+orbs: 
+  slack: circleci/slack@4.1
 # Define the jobs we want to run for this project
 jobs:
+  notify:
+    docker:
+        - image: charrtoo/lvl_docker:v1
+        auth:
+          username: charrtoo
+          password: devDocker@AKH123
+    steps:
+        - slack/notify:
+          channel: 'C03DV9DSU1Z'
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text testing building notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+            event: always
   build:
     docker:
       - image: charrtoo/lvl_docker:v1
         auth:
           username: charrtoo
-          password: devDocker@AKH123  # context / project UI env-var reference
+          password: devDocker@AKH123
     steps:
       - run: echo "this is the build job"
 # Orchestrate our job run sequence
 workflows:
-  build_:
+  send-notification:
     jobs:
-      - build
+      - notify:
+          context: slack-secrets
