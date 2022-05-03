@@ -6,27 +6,27 @@ jobs:
   notify:
     docker:
         - image: charrtoo/lvl_docker:v1
-        auth:
-          username: charrtoo
-          password: devDocker@AKH123
+          auth:
+            username: charrtoo
+            password: devDocker@AKH123
     steps:
         - slack/notify:
-          channel: 'C03DV9DSU1Z'
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text testing building notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
+            channel: 'C03DV9DSU1Z'
+            custom: |
+              {
+                "blocks": [
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "plain_text",
+                        "text": "*This is a text testing building notification*",
+                        "emoji": true
+                      }
+                    ]
+                  }
+                ]
+              }
             event: always
   build:
     docker:
